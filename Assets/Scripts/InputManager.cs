@@ -35,7 +35,6 @@ public class InputManager : MonoBehaviour
 
     private void FingerDown(Finger finger)
     {
-        //if (OnTap != null) OnTap(finger.currentTouch);
         pressTime = Time.time;
         startPos = finger.screenPosition;
     }

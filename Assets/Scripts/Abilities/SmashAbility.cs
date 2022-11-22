@@ -14,7 +14,7 @@ public class SmashAbility : Ability
 
         if (hit.collider.gameObject.CompareTag("Enemy"))
         {
-            EnemyHealth enemy = hit.transform.GetComponent<EnemyHealth>();
+            EnemyStats enemy = hit.transform.GetComponent<EnemyStats>();
 
             if (enemy != null)
                 enemy.Hit();

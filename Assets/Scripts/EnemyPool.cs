@@ -49,8 +49,9 @@ public class EnemyPool : MonoBehaviour
 
         enemies[enemyNumber].transform.position = enemySpawn.PosToSpawn();
 
-        enemies[enemyNumber].GetComponent<EnemyHealth>().Reset();
+        enemies[enemyNumber].GetComponent<EnemyStats>().Reset();
         enemies[enemyNumber].SetActive(true);
+        enemies[enemyNumber].GetComponent<EnemyStateManager>().IdleState.isSpawned = true;
     }
 
     public static void ReturnToPoolPos(Transform _enemy)

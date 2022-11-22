@@ -29,7 +29,6 @@ public class EnemySpawn : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        //Instantiate(enemy, new Vector3(xValue, -0.5f, zValue), Quaternion.identity);
         enemyPool.SpawnEnemy();
     }
 

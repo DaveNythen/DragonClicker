@@ -6,7 +6,7 @@ public class EnemyDespawn : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            EnemyPool.ReturnToPoolPos(col.transform);
+            col.GetComponent<EnemyStats>().Hit();
         }
     }
 }
