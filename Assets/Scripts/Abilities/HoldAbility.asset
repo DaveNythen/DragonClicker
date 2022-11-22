@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21954c0e4e7aa4e49ae5eb90e146c50e, type: 3}
+  m_Name: HoldAbility
+  m_EditorClassIdentifier: 
+  abilityName: Hold
+  cooldownTime: 3
+  activeTime: 0
+  mine: {fileID: 6610776725030993704, guid: 5bf582a844ae0204c999c9510c46ce92, type: 3}
+  maxNumberOfMines: 2
