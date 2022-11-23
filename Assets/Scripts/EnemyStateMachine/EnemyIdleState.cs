@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyIdleState : EnemyBaseState
 {
-    public bool isSpawned; //Called from EnemySpawn
 
     public override void EnterState(EnemyStateManager enemy)
     {
@@ -11,7 +10,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager enemy)
     {
-        if (isSpawned)
+        if (enemy.IsSpawned)
             enemy.SwitchState(enemy.MovingState);
     }
 }

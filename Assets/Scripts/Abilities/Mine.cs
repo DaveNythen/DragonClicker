@@ -24,7 +24,7 @@ public class Mine : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
-            EnemyStats enemy = hitCollider.GetComponent<EnemyStats>();
+            EnemyStateManager enemy = hitCollider.GetComponent<EnemyStateManager>();
 
             if (enemy != null)
                 enemy.Hit();

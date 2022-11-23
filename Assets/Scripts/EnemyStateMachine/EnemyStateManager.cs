@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyStateManager : MonoBehaviour
@@ -9,6 +7,15 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyIdleState IdleState = new EnemyIdleState();
     public EnemyMovingState MovingState = new EnemyMovingState();
     public EnemyDeadState DeadState = new EnemyDeadState();
+
+
+    bool isSpawned;
+    bool isAlive;
+    public float speed;
+    [SerializeField] SphereCollider col;
+
+    public bool IsSpawned { get { return isSpawned; } set { isSpawned = value; } }
+    public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
 
     private void Start()
     {
@@ -26,5 +33,17 @@ public class EnemyStateManager : MonoBehaviour
     {
         currentState = state;
         state.EnterState(this);
+    }
+
+    public void Hit()
+    {
+        isAlive = false;
+        col.enabled = false;
+    }
+
+    public void Reset()
+    {
+        isAlive = true;
+        col.enabled = true;
     }
 }

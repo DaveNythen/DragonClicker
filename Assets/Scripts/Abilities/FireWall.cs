@@ -12,7 +12,7 @@ public class FireWall : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            col.GetComponent<EnemyStats>().Hit();
+            col.GetComponent<EnemyStateManager>().Hit();
         }
     }
 }
