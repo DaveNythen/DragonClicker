@@ -20,8 +20,7 @@ public class EnemyStateManager : MonoBehaviour
     private void Start()
     {
         //starting state for the state machine
-        currentState = IdleState;
-        currentState.EnterState(this);
+        SwitchState(IdleState);
     }
 
     private void Update()
@@ -39,10 +38,12 @@ public class EnemyStateManager : MonoBehaviour
     {
         isAlive = false;
         col.enabled = false;
+        isSpawned = false;
     }
 
     public void Reset()
     {
+        SwitchState(IdleState);
         isAlive = true;
         col.enabled = true;
     }
