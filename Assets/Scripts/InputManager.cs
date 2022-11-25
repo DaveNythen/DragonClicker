@@ -24,6 +24,8 @@ public class InputManager : MonoBehaviour
     private bool isTwoFinger;
     private List<Finger> listOfFingers = new List<Finger>();
 
+    private Vector3 accDir;
+
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable();
@@ -53,6 +55,8 @@ public class InputManager : MonoBehaviour
         }
         else
             isTwoFinger = false;
+
+        ShakeInput();
     }
 
     private void FingerDown(Finger finger)
@@ -92,7 +96,7 @@ public class InputManager : MonoBehaviour
         if (Time.time - pressTime > 0.2f)
         {
             //It's holding
-            if (OnPressTwoFingers != null) OnPressTwoFingers(inputInfo);
+            if (OnPressTwoFingers != null) OnPressTwoFingers(inputInfo); //DEBUG
             return;
         }
 
@@ -120,5 +124,15 @@ public class InputManager : MonoBehaviour
 
         //It's a tap
         if (OnTap != null) OnTap(inputInfo);
+    }
+
+    private void ShakeInput()
+    {
+        accDir = Input.acceleration;
+
+        if (accDir.sqrMagnitude >= 4f)
+        {
+            if (OnPressTwoFingers != null) OnPressTwoFingers(new InputInfo(Vector2.zero, Vector2.zero));
+        }
     }
 }

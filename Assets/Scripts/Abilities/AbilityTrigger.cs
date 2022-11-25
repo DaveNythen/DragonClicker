@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 public class AbilityTrigger: MonoBehaviour
 {
-    public enum AbilityTriggerType {none, touch, hold, drag};
+    public enum AbilityTriggerType {none, touch, hold, drag, twoFingerHold};
     [HideInInspector] public AbilityTriggerType TriggerType;
 
     private InputInfo inputInfo;
@@ -12,6 +13,7 @@ public class AbilityTrigger: MonoBehaviour
         InputManager.OnTap += TouchTriggered;
         InputManager.OnPress += HoldTriggered;
         InputManager.OnDrag += DragTriggered;
+        InputManager.OnPressTwoFingers += TwoFingerPressTriggered;
     }
 
     private void OnDisable()
@@ -19,6 +21,13 @@ public class AbilityTrigger: MonoBehaviour
         InputManager.OnTap -= TouchTriggered;
         InputManager.OnPress -= HoldTriggered;
         InputManager.OnDrag -= DragTriggered;
+        InputManager.OnPressTwoFingers -= TwoFingerPressTriggered;
+    }
+
+    private void TwoFingerPressTriggered(InputInfo inputInfo)
+    {
+        this.inputInfo = inputInfo;
+        TriggerType = AbilityTriggerType.twoFingerHold;
     }
 
     public void TouchTriggered(InputInfo inputInfo)

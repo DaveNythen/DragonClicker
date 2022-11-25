@@ -451,6 +451,8 @@ MonoBehaviour:
     triggerType: 2
   - ability: {fileID: 11400000, guid: 038921030ffca054aa46b24a3450b1dd, type: 2}
     triggerType: 3
+  - ability: {fileID: 11400000, guid: d56e1098716f0fe49b6ff9449757ddc3, type: 2}
+    triggerType: 4
 --- !u!1 &838710608
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 10
-  timeBetweenEnemies: 1.199
+  timeBetweenEnemies: 1.254
   numberOfEnemies: 10
 --- !u!4 &838710610
 Transform:
