@@ -37,4 +37,10 @@ public class KillingWave : MonoBehaviour
             col.GetComponent<EnemyStateManager>().Hit();
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, transform.localScale.x);
+    }
 }
