@@ -42,10 +42,10 @@ public class EnemyPool : MonoBehaviour
     {
         enemyNumber++;
 
-        if (enemyNumber > enemyPoolSize - 1) //This should never happen on this case escenario
-        {
+        if (enemyNumber > enemyPoolSize - 1)
             enemyNumber = 0;
-        }
+
+        if (enemies[enemyNumber].activeSelf) return;
 
         enemies[enemyNumber].transform.position = enemySpawn.PosToSpawn();
 
