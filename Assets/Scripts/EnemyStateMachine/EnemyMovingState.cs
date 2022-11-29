@@ -7,7 +7,7 @@ public class EnemyMovingState : EnemyBaseState
     public override void EnterState(EnemyStateManager enemy)
     {
         tower = GameObject.FindGameObjectWithTag("Tower").transform;
-        enemy.transform.LookAt(tower);
+        //enemy.transform.LookAt(tower);
         enemy.agent.speed = enemy.speed;
     }
 

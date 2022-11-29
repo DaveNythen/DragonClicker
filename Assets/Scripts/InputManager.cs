@@ -96,7 +96,7 @@ public class InputManager : MonoBehaviour
         if (Time.time - pressTime > 0.2f)
         {
             //It's holding
-            if (OnPressTwoFingers != null) OnPressTwoFingers(inputInfo); //DEBUG
+            OnPressTwoFingers?.Invoke(inputInfo); //DEBUG
             return;
         }
 
@@ -111,19 +111,19 @@ public class InputManager : MonoBehaviour
         {
             //We're dragging
             //Debug.Log($"Dragging? -> {startPos} and {endPos}, distance -> {Vector3.Distance(startPos, endPos)}");
-            if (OnDrag != null) OnDrag(inputInfo);
+            OnDrag?.Invoke(inputInfo);
             return;
         }
 
         if (Time.time - pressTime > 0.3f)
         {
             //It's holding
-            if (OnPress != null) OnPress(inputInfo);
+            OnPress?.Invoke(inputInfo);
             return;
         }
 
         //It's a tap
-        if (OnTap != null) OnTap(inputInfo);
+        OnTap?.Invoke(inputInfo);
     }
 
     private void ShakeInput()
@@ -132,7 +132,7 @@ public class InputManager : MonoBehaviour
 
         if (accDir.sqrMagnitude >= 4f)
         {
-            if (OnPressTwoFingers != null) OnPressTwoFingers(new InputInfo(Vector2.zero, Vector2.zero));
+            OnPressTwoFingers?.Invoke(new InputInfo(Vector2.zero, Vector2.zero));
         }
     }
 }

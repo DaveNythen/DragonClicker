@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStateManager : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyMovingState MovingState = new EnemyMovingState();
     public EnemyDeadState DeadState = new EnemyDeadState();
 
-    public UnityEngine.AI.NavMeshAgent agent;
+    public NavMeshAgent agent;
     bool isSpawned;
     bool isAlive;
     public float speed;
