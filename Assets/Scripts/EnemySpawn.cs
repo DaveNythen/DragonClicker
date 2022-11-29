@@ -6,6 +6,7 @@ public class EnemySpawn : MonoBehaviour
 {
     [SerializeField] float distance;
     [Range(1f, 3f)][SerializeField] float timeBetweenEnemies;
+    [Range(0f, 0.5f)][SerializeField] float randomnessOnSpawn;
     public int numberOfEnemies;
 
     private float _timer;
@@ -20,7 +21,7 @@ public class EnemySpawn : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        if (_timer >= timeBetweenEnemies)
+        if (_timer >= timeBetweenEnemies + randomnessOnSpawn)
         {
             SpawnEnemy();
             _timer = 0;
