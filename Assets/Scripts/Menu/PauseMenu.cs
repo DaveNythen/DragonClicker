@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
     {
         TowerHealth.OnGameOver -= GameOver;
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !GameStatus.IsPaused)
