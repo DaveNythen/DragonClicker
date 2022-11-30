@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/HoldAbility")]
 public class HoldAbility : Ability
 {
-    [SerializeField] Mine mine;
-    public int maxNumberOfMines;
+    [SerializeField] Mine _mine;
+    //public int maxNumberOfMines;
 
     //int currentMines;
 
@@ -19,7 +19,7 @@ public class HoldAbility : Ability
         {
             //if (currentMines > maxNumberOfMines) return;
 
-            Instantiate(mine.gameObject, hit.point, Quaternion.identity);
+            Instantiate(_mine.gameObject, hit.point, Quaternion.identity);
             //currentMines++;
             //Mine.OnDestroy += Mine_OnDestroy;
 

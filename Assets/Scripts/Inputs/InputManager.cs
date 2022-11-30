@@ -18,13 +18,13 @@ public class InputManager : MonoBehaviour
     public delegate void PressTwoFingersEvent(InputInfo inputInfo);
     public static event PressTwoFingersEvent OnPressTwoFingers;
 
-    private float pressTime;
-    private Vector2 startPos;
-    private Vector2 endPos;
-    private bool isTwoFinger;
-    private List<Finger> listOfFingers = new List<Finger>();
+    private float _pressTime;
+    private Vector2 _startPos;
+    private Vector2 _endPos;
+    private bool _isTwoFinger;
+    private List<Finger> _listOfFingers = new List<Finger>();
 
-    private Vector3 accDir;
+    private Vector3 _accDir;
 
     private void OnEnable()
     {
@@ -44,34 +44,38 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers.Count == 2 && !isTwoFinger)
+        if (GameStatus.IsPaused) return;
+
+        if (UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers.Count == 2 && !_isTwoFinger)
         {
-            isTwoFinger = true;
+            _isTwoFinger = true;
             foreach (Finger finger in UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers)
             {
-                if(!listOfFingers.Contains(finger))
-                    listOfFingers.Add(finger);
+                if(!_listOfFingers.Contains(finger))
+                    _listOfFingers.Add(finger);
             }
         }
         else
-            isTwoFinger = false;
+            _isTwoFinger = false;
 
         ShakeInput();
     }
 
     private void FingerDown(Finger finger)
     {
-        pressTime = Time.time;
-        startPos = finger.screenPosition;
+        _pressTime = Time.time;
+        _startPos = finger.screenPosition;
     }
 
     private void FingerUp(Finger finger)
     {
-        endPos = finger.screenPosition;
+        if (GameStatus.IsPaused) return;
 
-        if (listOfFingers.Contains(finger))
+        _endPos = finger.screenPosition;
+
+        if (_listOfFingers.Contains(finger))
         {
-            listOfFingers.Remove(finger);
+            _listOfFingers.Remove(finger);
 
             if (finger.index != 0) //Only track the first touch
                 return;
@@ -84,16 +88,16 @@ public class InputManager : MonoBehaviour
 
     private void TwoFingerGestures()
     {
-        InputInfo inputInfo = new InputInfo(startPos, endPos);
+        InputInfo inputInfo = new InputInfo(_startPos, _endPos);
 
-        if (Vector3.Distance(startPos, endPos) > 50f)
+        if (Vector3.Distance(_startPos, _endPos) > 50f)
         {
             //We're dragging
             
             return;
         }
 
-        if (Time.time - pressTime > 0.2f)
+        if (Time.time - _pressTime > 0.2f)
         {
             //It's holding
             OnPressTwoFingers?.Invoke(inputInfo); //DEBUG
@@ -105,17 +109,16 @@ public class InputManager : MonoBehaviour
 
     private void OneFingerGestures()
     {
-        InputInfo inputInfo = new InputInfo(startPos, endPos);
+        InputInfo inputInfo = new InputInfo(_startPos, _endPos);
 
-        if (Vector3.Distance(startPos, endPos) > 50f)
+        if (Vector3.Distance(_startPos, _endPos) > 50f)
         {
             //We're dragging
-            //Debug.Log($"Dragging? -> {startPos} and {endPos}, distance -> {Vector3.Distance(startPos, endPos)}");
             OnDrag?.Invoke(inputInfo);
             return;
         }
 
-        if (Time.time - pressTime > 0.3f)
+        if (Time.time - _pressTime > 0.3f)
         {
             //It's holding
             OnPress?.Invoke(inputInfo);
@@ -128,10 +131,11 @@ public class InputManager : MonoBehaviour
 
     private void ShakeInput()
     {
-        accDir = Input.acceleration;
+        _accDir = Input.acceleration;
 
-        if (accDir.sqrMagnitude >= 4f)
+        if (_accDir.sqrMagnitude >= 4f)
         {
+            //is a global skill, I don't need the Input position
             OnPressTwoFingers?.Invoke(new InputInfo(Vector2.zero, Vector2.zero));
         }
     }

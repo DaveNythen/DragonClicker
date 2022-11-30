@@ -15,3 +15,5 @@ MonoBehaviour:
   abilityName: Smash
   cooldownTime: 1
   activeTime: 0
+  skillUI: {fileID: 8518877694063268948, guid: 72edf5dcf1f21c840a0c8993a330478e, type: 3}
+  skillUIInstance: {fileID: 0}

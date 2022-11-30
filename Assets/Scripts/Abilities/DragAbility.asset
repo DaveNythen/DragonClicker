@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: DragAbility
   m_EditorClassIdentifier: 
   abilityName: Wall
-  cooldownTime: 0
+  cooldownTime: 10
   activeTime: 5
-  wall: {fileID: 1546192109638977725, guid: 60c2c9615ccdefd4a83d90b88c1c1efa, type: 3}
+  skillUI: {fileID: 8518877694063268948, guid: aa87ca0f7621c584eba2eba591ced736, type: 3}
+  skillUIInstance: {fileID: 0}
+  _wall: {fileID: 1546192109638977725, guid: 60c2c9615ccdefd4a83d90b88c1c1efa, type: 3}
   wallLongitud: 2

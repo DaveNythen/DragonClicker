@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyDeadState : EnemyBaseState
 {
-    float animationTime = 0.1f;
+    float _animationTime = 0.1f;
 
     public override void EnterState(EnemyStateManager enemy)
     {
@@ -11,8 +11,8 @@ public class EnemyDeadState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager enemy)
     {
-        if (animationTime > 0)
-            animationTime -= Time.deltaTime;
+        if (_animationTime > 0)
+            _animationTime -= Time.deltaTime;
         else
             EnemyPool.ReturnToPoolPos(enemy.transform);
     }

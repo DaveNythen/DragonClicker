@@ -3,20 +3,20 @@ using UnityEngine.AI;
 
 public class EnemyStateManager : MonoBehaviour
 {
-    EnemyBaseState currentState;
+    EnemyBaseState _currentState;
 
     public EnemyIdleState IdleState = new EnemyIdleState();
     public EnemyMovingState MovingState = new EnemyMovingState();
     public EnemyDeadState DeadState = new EnemyDeadState();
 
     public NavMeshAgent agent;
-    bool isSpawned;
-    bool isAlive;
+    bool _isSpawned;
+    bool _isAlive;
     public float speed;
-    [SerializeField] SphereCollider col;
+    [SerializeField] SphereCollider _col;
 
-    public bool IsSpawned { get { return isSpawned; } set { isSpawned = value; } }
-    public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
+    public bool IsSpawned { get { return _isSpawned; } set { _isSpawned = value; } }
+    public bool IsAlive { get { return _isAlive; } set { _isAlive = value; } }
 
     private void Start()
     {
@@ -26,26 +26,26 @@ public class EnemyStateManager : MonoBehaviour
 
     private void Update()
     {
-        currentState.UpdateState(this);
+        _currentState.UpdateState(this);
     }
 
     public void SwitchState(EnemyBaseState state)
     {
-        currentState = state;
+        _currentState = state;
         state.EnterState(this);
     }
 
     public void Hit()
     {
-        isAlive = false;
-        col.enabled = false;
-        isSpawned = false;
+        _isAlive = false;
+        _col.enabled = false;
+        _isSpawned = false;
     }
 
     public void Reset()
     {
         SwitchState(IdleState);
-        isAlive = true;
-        col.enabled = true;
+        _isAlive = true;
+        _col.enabled = true;
     }
 }

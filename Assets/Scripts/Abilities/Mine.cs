@@ -5,15 +5,15 @@ public class Mine : MonoBehaviour
     public delegate void DestroyEvent();
     public static event DestroyEvent OnDestroy;
 
-    [SerializeField] ParticleSystem explosionParticle;
-    [SerializeField] int explosionRadius;
+    [SerializeField] ParticleSystem _explosionParticle;
+    [SerializeField] int _explosionRadius;
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
             //Boom
-            ExplosionDamage(transform.position, explosionRadius);
+            ExplosionDamage(transform.position, _explosionRadius);
         }
     }
 
@@ -36,7 +36,7 @@ public class Mine : MonoBehaviour
     void ExplosionVisuals()
     {
         Vector3 instPos = new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z);
-        GameObject explosion = Instantiate(explosionParticle.gameObject, instPos, Quaternion.identity);
+        GameObject explosion = Instantiate(_explosionParticle.gameObject, instPos, Quaternion.identity);
 
         gameObject.SetActive(false);
 
@@ -47,7 +47,7 @@ public class Mine : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere (transform.position, 2);
     }

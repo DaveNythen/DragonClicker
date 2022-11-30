@@ -15,4 +15,6 @@ MonoBehaviour:
   abilityName: KillingWave
   cooldownTime: 60
   activeTime: 5
-  wave: {fileID: 86890403604997420, guid: 99f352ee95e9f35419c38dcdfb547e0a, type: 3}
+  skillUI: {fileID: 8518877694063268948, guid: a7508ffe454be564a87d933b434d1865, type: 3}
+  skillUIInstance: {fileID: 0}
+  _wave: {fileID: 86890403604997420, guid: 99f352ee95e9f35419c38dcdfb547e0a, type: 3}

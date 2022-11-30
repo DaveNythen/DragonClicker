@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] Transform pauseMenu;
-    [SerializeField] Button continueButton;
+    [SerializeField] Transform _pauseMenu;
+    [SerializeField] Button _continueButton;
 
     private void OnEnable()
     {
@@ -28,21 +28,21 @@ public class PauseMenu : MonoBehaviour
     public void ShowPauseMenu()
     {
         ShowContinueButton(true);
-        pauseMenu.gameObject.SetActive(true);
+        _pauseMenu.gameObject.SetActive(true);
         GameStatus.PauseGame();
     }
 
     public void GameOver()
     {
         ShowContinueButton(false);
-        pauseMenu.gameObject.SetActive(true);
+        _pauseMenu.gameObject.SetActive(true);
         GameStatus.PauseGame();
     }
 
     public void ContinueButton()
     {
         GameStatus.UnPauseGame();
-        pauseMenu.gameObject.SetActive(false);
+        _pauseMenu.gameObject.SetActive(false);
     }
 
     public void RetryButton()
@@ -59,6 +59,6 @@ public class PauseMenu : MonoBehaviour
 
     private void ShowContinueButton(bool isShowed)
     {
-        continueButton.gameObject.SetActive(isShowed);
+        _continueButton.gameObject.SetActive(isShowed);
     }
 }

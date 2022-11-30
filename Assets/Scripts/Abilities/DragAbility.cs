@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/DragAbility")]
 public class DragAbility : Ability
 {
-    [SerializeField] FireWall wall;
+    [SerializeField] FireWall _wall;
     public float wallLongitud;
 
     public override void Activate(InputInfo inputInfo)
@@ -15,11 +15,11 @@ public class DragAbility : Ability
 
         if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
         {
-            Vector3 pos = new Vector3(hit.point.x, wall.transform.localScale.y / 2, hit.point.z);
-            wall.SetWallLong(wallLongitud);
+            Vector3 pos = new Vector3(hit.point.x, _wall.transform.localScale.y / 2, hit.point.z);
+            _wall.SetWallLong(wallLongitud);
 
             //Intantiate wall
-            GameObject wallIns = Instantiate(wall.gameObject, pos, Quaternion.Euler(0, inputInfo.gestureAngle, 0));
+            GameObject wallIns = Instantiate(_wall.gameObject, pos, Quaternion.Euler(0, inputInfo.gestureAngle, 0));
             Destroy(wallIns, activeTime);
         }
     }

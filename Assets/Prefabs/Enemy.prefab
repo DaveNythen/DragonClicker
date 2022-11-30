@@ -152,4 +152,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: -5775614517917773444}
   speed: 1.5
-  col: {fileID: 6666476788984619437}
+  _col: {fileID: 6666476788984619437}

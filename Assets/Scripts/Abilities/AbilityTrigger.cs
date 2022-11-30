@@ -6,7 +6,7 @@ public class AbilityTrigger: MonoBehaviour
     public enum AbilityTriggerType {none, touch, hold, drag, twoFingerHold};
     [HideInInspector] public AbilityTriggerType TriggerType;
 
-    private InputInfo inputInfo;
+    private InputInfo _inputInfo;
 
     private void OnEnable()
     {
@@ -26,29 +26,29 @@ public class AbilityTrigger: MonoBehaviour
 
     private void TwoFingerPressTriggered(InputInfo inputInfo)
     {
-        this.inputInfo = inputInfo;
+        this._inputInfo = inputInfo;
         TriggerType = AbilityTriggerType.twoFingerHold;
     }
 
     public void TouchTriggered(InputInfo inputInfo)
     {
-        this.inputInfo = inputInfo;
+        this._inputInfo = inputInfo;
         TriggerType = AbilityTriggerType.touch;
     }
 
     public void HoldTriggered(InputInfo inputInfo)
     {
-        this.inputInfo = inputInfo;
+        this._inputInfo = inputInfo;
         TriggerType = AbilityTriggerType.hold;
     }
     public void DragTriggered(InputInfo inputInfo)
     {
-        this.inputInfo = inputInfo;
+        this._inputInfo = inputInfo;
         TriggerType = AbilityTriggerType.drag;
     }
 
     public InputInfo GetInputInfo()
     {
-        return inputInfo;
+        return _inputInfo;
     }
 }

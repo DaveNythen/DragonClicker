@@ -15,5 +15,6 @@ MonoBehaviour:
   abilityName: Hold
   cooldownTime: 3
   activeTime: 0
-  mine: {fileID: 6610776725030993704, guid: 5bf582a844ae0204c999c9510c46ce92, type: 3}
-  maxNumberOfMines: 2
+  skillUI: {fileID: 8518877694063268948, guid: dbd923a373072e34eae70d4ef72aca71, type: 3}
+  skillUIInstance: {fileID: 0}
+  _mine: {fileID: 6610776725030993704, guid: 5bf582a844ae0204c999c9510c46ce92, type: 3}
