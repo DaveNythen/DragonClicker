@@ -14,40 +14,45 @@ public class AbilityHolder : MonoBehaviour
 
     public AbilityAndTrigger[] abilitiesTriggers;
 
-    Ability currentAbility;
-    private List<Ability> cooldownAbilities;
+    Ability _currentAbility;
+    private List<Ability> _cooldownAbilities;
 
-    private AbilityTrigger abilityTrigger;
+    private AbilityTrigger _abilityTrigger;
 
     private void Awake()
     {
-        abilityTrigger = FindObjectOfType<AbilityTrigger>();
-        cooldownAbilities = new List<Ability>();
+        _abilityTrigger = FindObjectOfType<AbilityTrigger>();
+        _cooldownAbilities = new List<Ability>();
     }
 
     void Update()
     {
         foreach (var ability in abilitiesTriggers)
         {
-            if (abilityTrigger.TriggerType == ability.triggerType)
+            if (_abilityTrigger.TriggerType == ability.triggerType)
             {
-                currentAbility = ability.ability;
+                _currentAbility = ability.ability;
 
-                if (cooldownAbilities.Contains(currentAbility)) return;
+                if (_cooldownAbilities.Contains(_currentAbility)) return;
 
-                currentAbility.Activate(abilityTrigger.GetInputInfo());
-                abilityTrigger.TriggerType = AbilityTrigger.AbilityTriggerType.none;
+                _currentAbility.Activate(_abilityTrigger.GetInputInfo());
+                _abilityTrigger.TriggerType = AbilityTrigger.AbilityTriggerType.none;
 
-                StartCoroutine(SetAbilityOnCooldown(currentAbility, currentAbility.cooldownTime));
+                StartCoroutine(SetAbilityOnCooldown(_currentAbility));
+                UpdateUI(_currentAbility);
             }
         }
     }
 
-    IEnumerator SetAbilityOnCooldown(Ability ability, float cooldownTime)
+    IEnumerator SetAbilityOnCooldown(Ability ability)
     {
-        cooldownAbilities.Add(ability);
-        //Debug.Log($"Cooldown para {ability} durante {cooldownTime}, empezando {Time.time}");
-        yield return new WaitForSeconds(cooldownTime);
-        cooldownAbilities.Remove(ability);
+        _cooldownAbilities.Add(ability);
+        yield return new WaitForSeconds(ability.cooldownTime);
+        _cooldownAbilities.Remove(ability);
+    }
+
+    private void UpdateUI(Ability ability)
+    {
+        ability.skillUIInstance.DisplaySkillTimers();
     }
 }
