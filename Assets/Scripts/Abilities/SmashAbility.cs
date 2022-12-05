@@ -8,6 +8,9 @@ public class SmashAbility : Ability
         //base.Activate();
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(inputInfo.startPos);
+
+        //Debug.DrawRay(Camera.main.transform.position, inputInfo.startPos, Color.green);
+
         Physics.Raycast(ray.origin, ray.direction, out hit, 11f);
 
         if (hit.collider == null) return;
