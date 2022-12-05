@@ -11,7 +11,7 @@ public class SmashAbility : Ability
 
         //Debug.DrawRay(Camera.main.transform.position, inputInfo.startPos, Color.green);
 
-        Physics.Raycast(ray.origin, ray.direction, out hit, 11f);
+        Physics.Raycast(ray.origin, ray.direction, out hit, 25f);
 
         if (hit.collider == null) return;
 

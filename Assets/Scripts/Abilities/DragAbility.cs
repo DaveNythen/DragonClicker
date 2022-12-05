@@ -11,7 +11,7 @@ public class DragAbility : Ability
         //base.Activate(touch);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(inputInfo.middlePoint);
-        Physics.Raycast(ray.origin, ray.direction, out hit, 11f);
+        Physics.Raycast(ray.origin, ray.direction, out hit, 25f);
 
         if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
         {
