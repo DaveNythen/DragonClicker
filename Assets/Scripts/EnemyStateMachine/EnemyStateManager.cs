@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,10 +10,11 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyMovingState MovingState = new EnemyMovingState();
     public EnemyDeadState DeadState = new EnemyDeadState();
 
+    public float speed;
     public NavMeshAgent agent;
+    public Animator animator;
     bool _isSpawned;
     bool _isAlive;
-    public float speed;
     [SerializeField] SphereCollider _col;
 
     public bool IsSpawned { get { return _isSpawned; } set { _isSpawned = value; } }
@@ -42,10 +44,28 @@ public class EnemyStateManager : MonoBehaviour
         _isSpawned = false;
     }
 
-    public void Reset()
+    public void Spawn()
     {
+        gameObject.SetActive(true);
+
+        Reset();
+                
         SwitchState(IdleState);
+
+        StartCoroutine(WaitOnIdle());
+    }
+
+    private void Reset()
+    {
         _isAlive = true;
         _col.enabled = true;
+        animator.SetBool("isAlive", true);
+        animator.SetBool("isMoving", false);
+    }
+
+    IEnumerator WaitOnIdle()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _isSpawned = true;
     }
 }

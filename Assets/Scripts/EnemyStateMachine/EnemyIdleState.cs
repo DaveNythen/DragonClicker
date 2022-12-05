@@ -1,8 +1,6 @@
-using UnityEngine;
 
 public class EnemyIdleState : EnemyBaseState
 {
-
     public override void EnterState(EnemyStateManager enemy)
     {
         //Play Animation or not

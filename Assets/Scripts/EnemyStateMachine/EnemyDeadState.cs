@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class EnemyDeadState : EnemyBaseState
 {
-    float _animationTime = 0.1f;
+    float _animationTime = 0.5f;
 
     public override void EnterState(EnemyStateManager enemy)
     {
-        //Play Animation
+        enemy.animator.SetBool("isAlive", false);
     }
 
     public override void UpdateState(EnemyStateManager enemy)

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
@@ -49,10 +47,7 @@ public class EnemyPool : MonoBehaviour
 
         enemies[enemyNumber].transform.position = enemySpawn.PosToSpawn();
 
-        EnemyStateManager stateManager = enemies[enemyNumber].GetComponent<EnemyStateManager>();
-        stateManager.Reset();
-        enemies[enemyNumber].SetActive(true);
-        stateManager.IsSpawned = true;
+        enemies[enemyNumber].GetComponent<EnemyStateManager>().Spawn();
     }
 
     public static void ReturnToPoolPos(Transform _enemy)
