@@ -30,7 +30,7 @@ public static class SoundManager
 
         AudioSource audioSource = soundGO.AddComponent<AudioSource>();
         audioSource.clip = GetClip(_soundToPlay);
-        audioSource.maxDistance = 15f; //Maybe need to adjust
+        audioSource.maxDistance = 25f; //Maybe need to adjust
         audioSource.spatialBlend = 1f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         audioSource.dopplerLevel = 0f;
