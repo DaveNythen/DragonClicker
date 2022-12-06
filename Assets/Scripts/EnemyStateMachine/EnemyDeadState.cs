@@ -1,12 +1,14 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyDeadState : EnemyBaseState
 {
-    float _animationTime = 0.5f;
+    float _animationTime = 1f;
 
     public override void EnterState(EnemyStateManager enemy)
     {
         enemy.animator.SetBool("isAlive", false);
+        enemy.agent.speed = 0;
     }
 
     public override void UpdateState(EnemyStateManager enemy)
@@ -14,6 +16,9 @@ public class EnemyDeadState : EnemyBaseState
         if (_animationTime > 0)
             _animationTime -= Time.deltaTime;
         else
-            EnemyPool.ReturnToPoolPos(enemy.transform);
+            enemy.transform.DOMoveY(-0.5f, 0.5f).OnComplete(() =>
+            {
+                EnemyPool.ReturnToPoolPos(enemy.transform);
+            });
     }
 }
