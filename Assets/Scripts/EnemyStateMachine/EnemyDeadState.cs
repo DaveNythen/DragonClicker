@@ -3,10 +3,11 @@ using DG.Tweening;
 
 public class EnemyDeadState : EnemyBaseState
 {
-    float _animationTime = 1f;
+    float _animationTime;
 
     public override void EnterState(EnemyStateManager enemy)
     {
+        _animationTime = 1f;
         enemy.animator.SetBool("isAlive", false);
         enemy.agent.speed = 0;
     }
