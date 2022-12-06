@@ -100,7 +100,9 @@ public class InputManager : MonoBehaviour
         if (Time.time - _pressTime > 0.2f)
         {
             //It's holding
+#if UNITY_EDITOR
             OnPressTwoFingers?.Invoke(inputInfo); //DEBUG
+#endif
             return;
         }
 
