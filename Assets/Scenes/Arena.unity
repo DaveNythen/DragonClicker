@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 281923744}
   - component: {fileID: 281923743}
   - component: {fileID: 281923742}
+  - component: {fileID: 281923745}
   m_Layer: 5
   m_Name: Addition
   m_TagString: Untagged
@@ -405,7 +406,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +100
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -482,6 +483,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281923740}
   m_CullTransparentMesh: 1
+--- !u!225 &281923745
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281923740}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &321218995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2199,6 +2212,7 @@ GameObject:
   - component: {fileID: 1641004686}
   - component: {fileID: 1641004688}
   - component: {fileID: 1641004687}
+  - component: {fileID: 1641004689}
   m_Layer: 5
   m_Name: Currency
   m_TagString: Untagged
@@ -2263,6 +2277,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641004685}
   m_CullTransparentMesh: 1
+--- !u!114 &1641004689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641004685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff93986c4bb8da340b6bb7e62279049f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalMoneyText: {fileID: 600451497}
+  additionText: {fileID: 281923743}
 --- !u!1 &1684395521
 GameObject:
   m_ObjectHideFlags: 0

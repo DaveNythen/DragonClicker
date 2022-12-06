@@ -10,6 +10,7 @@ public class EnemyStateManager : MonoBehaviour
     public EnemyMovingState MovingState = new EnemyMovingState();
     public EnemyDeadState DeadState = new EnemyDeadState();
 
+    public int moneyValue;
     public float speed;
     public NavMeshAgent agent;
     public Animator animator;
@@ -19,6 +20,13 @@ public class EnemyStateManager : MonoBehaviour
 
     public bool IsSpawned { get { return _isSpawned; } set { _isSpawned = value; } }
     public bool IsAlive { get { return _isAlive; } set { _isAlive = value; } }
+
+    private Currency currency;
+
+    private void Awake()
+    {
+        currency = FindObjectOfType<Currency>();
+    }
 
     private void Start()
     {
@@ -42,6 +50,7 @@ public class EnemyStateManager : MonoBehaviour
         _isAlive = false;
         _col.enabled = false;
         _isSpawned = false;
+        currency.AddMoney(moneyValue);
     }
 
     public void Spawn()
