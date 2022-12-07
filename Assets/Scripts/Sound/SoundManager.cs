@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class SoundManager
@@ -41,7 +39,7 @@ public static class SoundManager
 
     private static AudioClip GetClip(soundList _soundToPlay)
     {
-        foreach (AudioHandler.ClipSound clipSound in AudioHandler.instance.clipSoundsArray)
+        foreach (AudioHandler.ClipSound clipSound in AudioHandler.Instance.clipSoundsArray)
         {
             if(clipSound.sound == _soundToPlay)
             {

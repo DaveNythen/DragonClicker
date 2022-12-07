@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 
-public class Currency : MonoBehaviour
+public class Currency : Singleton<Currency>
 {
     private int _totalMoneyAnimated;
     private int _totalMoney;

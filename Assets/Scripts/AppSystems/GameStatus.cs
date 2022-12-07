@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameStatus: MonoBehaviour
+public class GameStatus: StaticInstance<GameStatus>
 {
     public static bool IsPaused { get; private set; }
 

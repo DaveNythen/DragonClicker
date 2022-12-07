@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
 [DefaultExecutionOrder (-1)]
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
     public delegate void TapEvent (InputInfo inputInfo);
     public static event TapEvent OnTap;

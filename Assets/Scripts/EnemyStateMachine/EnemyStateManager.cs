@@ -21,13 +21,6 @@ public class EnemyStateManager : MonoBehaviour
     public bool IsSpawned { get { return _isSpawned; } set { _isSpawned = value; } }
     public bool IsAlive { get { return _isAlive; } set { _isAlive = value; } }
 
-    private Currency currency;
-
-    private void Awake()
-    {
-        currency = FindObjectOfType<Currency>();
-    }
-
     private void Start()
     {
         //starting state for the state machine
@@ -50,7 +43,7 @@ public class EnemyStateManager : MonoBehaviour
         _isAlive = false;
         _col.enabled = false;
         _isSpawned = false;
-        currency.AddMoney(moneyValue);
+        Currency.Instance.AddMoney(moneyValue);
     }
 
     public void Spawn()
