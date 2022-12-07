@@ -9,7 +9,7 @@ public class EnemyDespawn : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            col.GetComponent<EnemyStateManager>().Hit();
+            col.GetComponent<EnemyStateManager>().ReachTower();
             OnTowerReached?.Invoke();
         }
     }

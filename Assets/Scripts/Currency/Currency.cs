@@ -34,8 +34,7 @@ public class Currency : Singleton<Currency>
 
         additionText.DOKill();
         additionText.transform.DOMoveY(_additionOriginalPosY + 30, _additionAnimationTime);
-        additionText.GetComponent<CanvasGroup>().DOFade(0, _additionAnimationTime);
-        ResetAddition();
+        additionText.GetComponent<CanvasGroup>().DOFade(0, _additionAnimationTime).OnComplete(() => { ResetAddition(); });
 
         if (increaseCoroutine != null)
         {

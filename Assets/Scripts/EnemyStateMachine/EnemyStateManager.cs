@@ -46,6 +46,13 @@ public class EnemyStateManager : MonoBehaviour
         Currency.Instance.AddMoney(moneyValue);
     }
 
+    public void ReachTower()
+    {
+        _isAlive = false;
+        _col.enabled = false;
+        _isSpawned = false;
+    }
+
     public void Spawn()
     {
         gameObject.SetActive(true);
