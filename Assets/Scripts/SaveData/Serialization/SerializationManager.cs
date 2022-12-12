@@ -45,6 +45,7 @@ public class SerializationManager
     private static BinaryFormatter GetBinaryFormatter()
     {
         BinaryFormatter formatter = new BinaryFormatter();
+        //Here I can add surrogates
         return formatter;
     }
 }
