@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour
         ShowContinueButton(false);
         _pauseMenu.gameObject.SetActive(true);
         GameStatus.PauseGame();
+        SerializationManager.Save(SaveData.Instance.profile.currency);
     }
 
     public void ContinueButton()

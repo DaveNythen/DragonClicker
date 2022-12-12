@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using System;
 
 public class CurrencyUI : MonoBehaviour
 {
@@ -19,13 +20,36 @@ public class CurrencyUI : MonoBehaviour
         _additionOriginalPosY = additionText.transform.position.y;
     }
 
-    public void OnAddMoney(int amount, bool isExpense)
+    private void OnEnable()
     {
-        if(isExpense)
-            additionText.text = "- " + amount.ToString();
-        else
-            additionText.text = "+ " + amount.ToString();
+        GameEvents.OnLoad += OnDataLoad;
+    }
 
+    private void OnDisable()
+    {
+        GameEvents.OnLoad -= OnDataLoad;
+    }
+
+    private void OnDataLoad()
+    {
+        _totalMoneyAnimated = SaveData.Instance.profile.currency;
+        totalMoneyText.text = _totalMoneyAnimated.ToString();
+    }
+
+    public void OnEarnMoney(int amount)
+    {
+        additionText.text = "+ " + amount.ToString();
+        UpdateMoney(amount, false);
+    }
+
+    public void OnExpendMoney(int amount)
+    {
+        additionText.text = "- " + amount.ToString();
+        UpdateMoney(amount, true);
+    }
+
+    private void UpdateMoney(int amount, bool isExpense)
+    {
         additionText.DOKill();
         additionText.transform.DOMoveY(_additionOriginalPosY + 30, 0.3f);
         additionText.GetComponent<CanvasGroup>().DOFade(0, 0.3f).OnComplete(() => { ResetAddition(); });

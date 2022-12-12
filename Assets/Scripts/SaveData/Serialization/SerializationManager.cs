@@ -4,14 +4,14 @@ using System.IO;
 
 public class SerializationManager
 {
-    public static bool Save(string saveName, object saveData)
+    public static bool Save(object saveData)
     {
         BinaryFormatter formatter = GetBinaryFormatter();
 
         if (!Directory.Exists(Application.persistentDataPath + "/saves"))
             Directory.CreateDirectory(Application.persistentDataPath + "/saves");
 
-        string path = Application.persistentDataPath + "/saves" + saveName + ".save";
+        string path = Application.persistentDataPath + "/saves/Save.save";
 
         FileStream file = File.Create(path);
         formatter.Serialize(file, saveData);
@@ -20,9 +20,11 @@ public class SerializationManager
         return true;
     }
 
-    public static object Load(string path)
+    public static object Load()
     {
-        if(!File.Exists(path)) return null;
+        string path = Application.persistentDataPath + "/saves/Save.save";
+
+        if (!File.Exists(path)) return null;
 
         BinaryFormatter formatter = GetBinaryFormatter();
 
