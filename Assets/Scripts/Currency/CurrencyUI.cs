@@ -19,9 +19,12 @@ public class CurrencyUI : MonoBehaviour
         _additionOriginalPosY = additionText.transform.position.y;
     }
 
-    public void OnAddMoney(int amount)
+    public void OnAddMoney(int amount, bool isExpense)
     {
-        additionText.text = "+ " + amount.ToString();
+        if(isExpense)
+            additionText.text = "- " + amount.ToString();
+        else
+            additionText.text = "+ " + amount.ToString();
 
         additionText.DOKill();
         additionText.transform.DOMoveY(_additionOriginalPosY + 30, 0.3f);
@@ -31,7 +34,7 @@ public class CurrencyUI : MonoBehaviour
         if (increaseCoroutine != null)
             StopCoroutine(increaseCoroutine);
 
-        increaseCoroutine = StartCoroutine(AddMoneyAsync(amount));
+        increaseCoroutine = StartCoroutine(ChangeMoneyAsync(amount, isExpense));
     }
 
     private void ResetAddition()
@@ -41,20 +44,40 @@ public class CurrencyUI : MonoBehaviour
         additionText.GetComponent<CanvasGroup>().DOFade(1, 0);
     }
 
-    IEnumerator AddMoneyAsync(int amount)
+    IEnumerator ChangeMoneyAsync(int amount, bool isExpense)
     {
-        int targetValue = _totalMoneyAnimated + amount;
+        int targetValue;
         int stepAmount = Mathf.CeilToInt(amount / (_fps * 0.3f));
 
-        while (_totalMoneyAnimated < targetValue)
+        if (isExpense)
         {
-            _totalMoneyAnimated += stepAmount;
-            if (_totalMoneyAnimated > targetValue)
-                _totalMoneyAnimated = targetValue;
+            targetValue = _totalMoneyAnimated - amount;
 
-            totalMoneyText.text = _totalMoneyAnimated.ToString();
+            while (_totalMoneyAnimated > targetValue)
+            {
+                _totalMoneyAnimated -= stepAmount;
+                if (_totalMoneyAnimated < targetValue)
+                    _totalMoneyAnimated = targetValue;
 
-            yield return new WaitForSeconds(1f / _fps);
+                totalMoneyText.text = _totalMoneyAnimated.ToString();
+
+                yield return new WaitForSeconds(1f / _fps);
+            }
+        }
+        else
+        {
+            targetValue = _totalMoneyAnimated + amount;
+
+            while (_totalMoneyAnimated < targetValue)
+            {
+                _totalMoneyAnimated += stepAmount;
+                if (_totalMoneyAnimated > targetValue)
+                    _totalMoneyAnimated = targetValue;
+
+                totalMoneyText.text = _totalMoneyAnimated.ToString();
+
+                yield return new WaitForSeconds(1f / _fps);
+            }
         }
     }
 }

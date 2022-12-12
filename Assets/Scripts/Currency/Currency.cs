@@ -10,7 +10,16 @@ public class Currency : Singleton<Currency>
     {
         _totalMoney += amount;
 
-        currencyUI.OnAddMoney(amount);
+        SaveData.Instance.profile.currency += amount;
+        currencyUI.OnAddMoney(amount, false);
+    }
+
+    public void Buy(int expense)
+    {
+        _totalMoney -= expense;
+
+        SaveData.Instance.profile.currency -= expense;
+        currencyUI.OnAddMoney(expense, true);
     }
 
     public int GetMoney()
