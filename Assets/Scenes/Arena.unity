@@ -2073,6 +2073,7 @@ GameObject:
   - component: {fileID: 1542307955}
   - component: {fileID: 1542307954}
   - component: {fileID: 1542307957}
+  - component: {fileID: 1542307958}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2143,6 +2144,19 @@ MonoBehaviour:
     triggerType: 3
   - ability: {fileID: 11400000, guid: d56e1098716f0fe49b6ff9449757ddc3, type: 2}
     triggerType: 4
+--- !u!114 &1542307958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542307953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff93986c4bb8da340b6bb7e62279049f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencyUI: {fileID: 1641004689}
 --- !u!1 &1571727651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,7 +2300,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1641004685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff93986c4bb8da340b6bb7e62279049f, type: 3}
+  m_Script: {fileID: 11500000, guid: fd2c461ef7d9e9945a3cfd6317598193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   totalMoneyText: {fileID: 600451497}
