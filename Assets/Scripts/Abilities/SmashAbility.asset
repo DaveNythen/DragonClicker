@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65437c5e6c9866947b69522bd1e379ca, type: 3}
   m_Name: SmashAbility
   m_EditorClassIdentifier: 
+  id: 1
   abilityName: Smash
   cooldownTime: 1
   activeTime: 0

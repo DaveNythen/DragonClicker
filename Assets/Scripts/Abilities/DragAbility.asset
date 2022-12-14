@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1044b6c215c83a44a0c20049a71768a, type: 3}
   m_Name: DragAbility
   m_EditorClassIdentifier: 
+  id: 3
   abilityName: Wall
   cooldownTime: 10
   activeTime: 5

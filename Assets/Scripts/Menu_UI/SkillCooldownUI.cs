@@ -6,9 +6,11 @@ public class SkillCooldownUI : MonoBehaviour
 
     private void Start()
     {
-        foreach (var abilityAndTrigger in _abilityHolder.abilitiesTriggers)
+        foreach (AbilityHolder.AbilityAndTrigger abilityAndTrigger in _abilityHolder.abilitiesTriggers)
         {
             Ability ability = abilityAndTrigger.ability;
+
+            if (!SaveData.Instance.profile.unlockedAbilitiesIDs.Contains(ability.id)) return;
 
             SkillUI skillUI = Instantiate(ability.skillUI, transform);
             skillUI.cooldownTime = ability.cooldownTime;

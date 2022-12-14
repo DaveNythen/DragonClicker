@@ -16,4 +16,9 @@ public class SaveLoadPrototype : MonoBehaviour
         SaveData.Instance = SerializationManager.Load() as SaveData;
         GameEvents.TriggerOnLoad();
     }
+
+    public void UnlockSmashSkill()
+    {
+        SaveData.Instance.profile.unlockedAbilitiesIDs.Add(1);
+    }
 }

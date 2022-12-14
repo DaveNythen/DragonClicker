@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6b9d3c641aafb46ada85e850906f24, type: 3}
   m_Name: ClearScreenAbility
   m_EditorClassIdentifier: 
+  id: 4
   abilityName: KillingWave
   cooldownTime: 60
   activeTime: 5

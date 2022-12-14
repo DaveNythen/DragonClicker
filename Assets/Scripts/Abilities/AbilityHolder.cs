@@ -30,6 +30,7 @@ public class AbilityHolder : MonoBehaviour
             {
                 _currentAbility = ability.ability;
 
+                if (!SaveData.Instance.profile.unlockedAbilitiesIDs.Contains(_currentAbility.id)) return;
                 if (_cooldownAbilities.Contains(_currentAbility)) return;
 
                 _currentAbility.Activate(inputInfo);
