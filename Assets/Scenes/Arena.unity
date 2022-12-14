@@ -2137,13 +2137,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilitiesTriggers:
   - ability: {fileID: 11400000, guid: ea92b985162b64b458c043f9248f32eb, type: 2}
-    triggerType: 1
+    triggerType: 0
   - ability: {fileID: 11400000, guid: d003ec0887cd4334cb4462bb6baac830, type: 2}
-    triggerType: 2
+    triggerType: 1
   - ability: {fileID: 11400000, guid: 038921030ffca054aa46b24a3450b1dd, type: 2}
-    triggerType: 3
+    triggerType: 2
   - ability: {fileID: 11400000, guid: d56e1098716f0fe49b6ff9449757ddc3, type: 2}
-    triggerType: 4
+    triggerType: 3
 --- !u!114 &1542307958
 MonoBehaviour:
   m_ObjectHideFlags: 0

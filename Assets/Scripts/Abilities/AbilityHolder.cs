@@ -17,29 +17,26 @@ public class AbilityHolder : MonoBehaviour
     Ability _currentAbility;
     private List<Ability> _cooldownAbilities;
 
-    private AbilityTrigger _abilityTrigger;
-
     private void Awake()
     {
-        _abilityTrigger = FindObjectOfType<AbilityTrigger>();
         _cooldownAbilities = new List<Ability>();
     }
 
-    void Update()
+    public void PlayAbility(AbilityTrigger.AbilityTriggerType abilityTriggerType, InputInfo inputInfo)
     {
         foreach (var ability in abilitiesTriggers)
         {
-            if (_abilityTrigger.TriggerType == ability.triggerType)
+            if (abilityTriggerType == ability.triggerType)
             {
                 _currentAbility = ability.ability;
 
                 if (_cooldownAbilities.Contains(_currentAbility)) return;
 
-                _currentAbility.Activate(_abilityTrigger.GetInputInfo());
-                _abilityTrigger.TriggerType = AbilityTrigger.AbilityTriggerType.none;
+                _currentAbility.Activate(inputInfo);
 
                 StartCoroutine(SetAbilityOnCooldown(_currentAbility));
                 UpdateUI(_currentAbility);
+                break;
             }
         }
     }

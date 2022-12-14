@@ -1,12 +1,19 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(AbilityHolder))]
 public class AbilityTrigger: MonoBehaviour
 {
-    public enum AbilityTriggerType {none, touch, hold, drag, twoFingerHold};
+    public enum AbilityTriggerType {touch, hold, drag, twoFingerHold};
     [HideInInspector] public AbilityTriggerType TriggerType;
 
     private InputInfo _inputInfo;
+    AbilityHolder _abilityHolder;
+
+    private void Awake()
+    {
+        _abilityHolder = GetComponent<AbilityHolder>();
+    }
 
     private void OnEnable()
     {
@@ -24,31 +31,35 @@ public class AbilityTrigger: MonoBehaviour
         InputManager.OnPressTwoFingers -= TwoFingerPressTriggered;
     }
 
+    private void AbilityTriggered()
+    {
+        _abilityHolder.PlayAbility(TriggerType, _inputInfo);
+    }
+
     private void TwoFingerPressTriggered(InputInfo inputInfo)
     {
-        this._inputInfo = inputInfo;
+        _inputInfo = inputInfo;
         TriggerType = AbilityTriggerType.twoFingerHold;
+        AbilityTriggered();
     }
 
     public void TouchTriggered(InputInfo inputInfo)
     {
-        this._inputInfo = inputInfo;
+        _inputInfo = inputInfo;
         TriggerType = AbilityTriggerType.touch;
+        AbilityTriggered();
     }
 
     public void HoldTriggered(InputInfo inputInfo)
     {
-        this._inputInfo = inputInfo;
+        _inputInfo = inputInfo;
         TriggerType = AbilityTriggerType.hold;
+        AbilityTriggered();
     }
     public void DragTriggered(InputInfo inputInfo)
     {
-        this._inputInfo = inputInfo;
+        _inputInfo = inputInfo;
         TriggerType = AbilityTriggerType.drag;
-    }
-
-    public InputInfo GetInputInfo()
-    {
-        return _inputInfo;
+        AbilityTriggered();
     }
 }
