@@ -103,5 +103,17 @@ public class CurrencyUI : MonoBehaviour
                 yield return new WaitForSeconds(1f / _fps);
             }
         }
+
+        CorrectTotalMoneyValue();
+    }
+
+    private void CorrectTotalMoneyValue()
+    {
+        //sometimes when multiple inputs are added, _totalMoneyAnimated isn't correct
+        //while I look for a solution, I'll make sure it's correct
+        if (_totalMoneyAnimated == SaveData.Instance.profile.currency) return;
+        
+        SaveData.Instance.profile.currency = _totalMoneyAnimated;
+        totalMoneyText.text = _totalMoneyAnimated.ToString();
     }
 }

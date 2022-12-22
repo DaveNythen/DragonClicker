@@ -5,6 +5,7 @@ public class MainMenuNavigation : MonoBehaviour
 {
     public void StartGame()
     {
+        GameManager.Instance.UpdateGameState(GameState.Gameplay);
         SceneManager.LoadScene(SceneIndex.GAME_ARENA);
     }
 

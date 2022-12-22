@@ -6,6 +6,11 @@ public class SkillCooldownUI : MonoBehaviour
 
     private void Start()
     {
+        DisplayUnclockedAbilitiesUI();
+    }
+
+    private void DisplayUnclockedAbilitiesUI()
+    {
         foreach (AbilityHolder.AbilityAndTrigger abilityAndTrigger in _abilityHolder.abilitiesTriggers)
         {
             Ability ability = abilityAndTrigger.ability;

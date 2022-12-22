@@ -5,9 +5,6 @@ public class TowerHealth : MonoBehaviour
 {
     [SerializeField] float health;
 
-    public delegate void OnGameOverEvent();
-    public static event OnGameOverEvent OnGameOver;
-
     private void OnEnable()
     {
         EnemyDespawn.OnTowerReached += OnDamage;
@@ -23,8 +20,6 @@ public class TowerHealth : MonoBehaviour
         health--;
 
         if (health <= 0)
-        {
-            OnGameOver?.Invoke();
-        }
+            GameManager.Instance.UpdateGameState(GameState.GameOver);
     }
 }

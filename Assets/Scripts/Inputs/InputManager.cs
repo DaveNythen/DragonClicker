@@ -44,7 +44,7 @@ public class InputManager : Singleton<InputManager>
 
     private void Update()
     {
-        if (GameStatus.IsPaused) return;
+        if (GameManager.Instance.State != GameState.Gameplay) return;
 
         if (UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers.Count == 2 && !_isTwoFinger)
         {
@@ -69,7 +69,7 @@ public class InputManager : Singleton<InputManager>
 
     private void FingerUp(Finger finger)
     {
-        if (GameStatus.IsPaused) return;
+        if (GameManager.Instance.State != GameState.Gameplay) return;
 
         _endPos = finger.screenPosition;
 

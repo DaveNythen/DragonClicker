@@ -9,52 +9,54 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        TowerHealth.OnGameOver += GameOver;
+        GameManager.OnGameStateChanged += GameManager_OnGameStateChanged;
     }
 
     private void OnDisable()
     {
-        TowerHealth.OnGameOver -= GameOver;
+        GameManager.OnGameStateChanged -= GameManager_OnGameStateChanged;
+    }
+
+    private void GameManager_OnGameStateChanged(GameState state)
+    {
+        if (state == GameState.GameOver)
+            GameOver();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !GameStatus.IsPaused)
-        {
+        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.State == GameState.Gameplay)
             ShowPauseMenu();
-        }
     }
 
     public void ShowPauseMenu()
     {
         ShowContinueButton(true);
         _pauseMenu.gameObject.SetActive(true);
-        GameStatus.PauseGame();
+        GameManager.Instance.UpdateGameState(GameState.Paused);
     }
 
     public void GameOver()
     {
         ShowContinueButton(false);
         _pauseMenu.gameObject.SetActive(true);
-        GameStatus.PauseGame();
-        SerializationManager.Save(SaveData.Instance.profile.currency);
     }
 
     public void ContinueButton()
     {
-        GameStatus.UnPauseGame();
+        GameManager.Instance.UpdateGameState(GameState.Gameplay);
         _pauseMenu.gameObject.SetActive(false);
     }
 
     public void RetryButton()
     {
-        GameStatus.UnPauseGame();
+        GameManager.Instance.UpdateGameState(GameState.Gameplay);
         SceneManager.LoadScene(SceneIndex.GAME_ARENA);
     }
 
     public void ExitButton()
     {
-        GameStatus.UnPauseGame();
+        GameManager.Instance.UpdateGameState(GameState.StartMenu);
         SceneManager.LoadScene(SceneIndex.MENU);
     }
 
